@@ -5,44 +5,46 @@ import java.util.Scanner;
 
 public class ConsoleApp {
 
-  private static final GameView gameView = new GameView(new Scanner(System.in));
+  private static final GameView gameView = new GameView();
+  private static final UserInput userInput = new UserInput(new Scanner(System.in));
   private static final GameRepository gameRepository = new GameRepository();
   private static final GameController gameController = new GameController(gameRepository, gameView);
+
 
   public static void main(String... args) {
     insertSampleData();
 
     while (true) {
-      int choice = gameView.menuChoice();
+      int choice = userInput.menuChoice();
       switch (choice) {
         case Menu.LIST_ALL:
           gameController.findAll();
           break;
 
         case Menu.ADD:
-          gameController.create();
+          gameController.create(userInput);
           break;
 
         case Menu.DELETE:
-          gameController.delete();
+          gameController.delete(userInput);
           break;
 
         case Menu.EDIT:
-          gameController.update();
+          gameController.update(userInput);
           break;
 
         case Menu.FIND:
-          switch (gameView.findChoice()) {
+          switch (userInput.findChoice()) {
             case Menu.FIND_BY_NAME: {
-              gameController.findByName();
+              gameController.findByName(userInput);
               break;
             }
             case Menu.FIND_BY_RATE: {
-              gameController.findByRate();
+              gameController.findByRate(userInput);
               break;
             }
             case Menu.FIND_BY_DATE: {
-              gameController.findByDate();
+              gameController.findByDate(userInput);
               break;
             }
           }

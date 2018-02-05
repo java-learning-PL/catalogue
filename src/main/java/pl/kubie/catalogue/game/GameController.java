@@ -18,36 +18,36 @@ class GameController {
     gameView.print(games);
   }
 
-  void findByName() {
-    String name = gameView.gameId();
+  void findByName(UserInput userInput) {
+    String name = userInput.gameId();
     gameView.print(gameRepository.findByName(name));
   }
 
-  void findByDate() {
-    LocalDate date = gameView.dateToFind();
+  void findByDate(UserInput userInput) {
+    LocalDate date = userInput.dateToFind();
     List<Game> games = gameRepository.findByDate(date);
     gameView.print(games);
   }
 
-  void findByRate() {
-    double rate = gameView.rateToFind();
+  void findByRate(UserInput userInput) {
+    double rate = userInput.rateToFind();
     List<Game> games = gameRepository.findByRate(rate);
     gameView.print(games);
   }
 
-  void create() {
-    Game game = gameView.game();
+  void create(UserInput userInput) {
+    Game game = userInput.game();
     gameRepository.save(game);
   }
 
-  void delete() {
-    String name = gameView.gameId();
+  void delete(UserInput userInput) {
+    String name = userInput.gameId();
     gameRepository.delete(name);
   }
 
-  void update() {
-    Game old = gameRepository.findByName(gameView.gameId());
-    Game updated = gameView.update(old);
+  void update(UserInput userInput) {
+    Game old = gameRepository.findByName(userInput.gameId());
+    Game updated = userInput.update(old);
     gameRepository.save(updated);
   }
 }
