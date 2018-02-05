@@ -12,11 +12,10 @@ public class Game {
 
     public Game(String name, String type,String comment, double rate) {
         this.name = name;
+        this.type = type;
         this.rate = rate;
         this.date = LocalDate.now();
         this.comment = comment;
-        System.out.println(this.date);
-
     }
 
     public String getName() {

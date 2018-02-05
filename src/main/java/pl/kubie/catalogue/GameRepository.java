@@ -3,6 +3,8 @@ package pl.kubie.catalogue;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class GameRepository {
@@ -12,18 +14,23 @@ public class GameRepository {
         this.gameList = new HashMap<>();
     }
 
-    public Game addGame(Game game){
-        gameList.put(game.getName(),game);
-        return game;
+    public Game save(Game game){
+        if(gameList.containsKey(game.getName())) {
+           throw new EntityNotFoundException();
+        }
+        else{
+            gameList.put(game.getName(), game);
+            return game;
+        }
     }
 
-    public void deleteGame(String name){
+    public void delete(String name){
         if(gameList.remove(name) ==null) {
             throw new EntityNotFoundException();
         }
     }
 
-    public Game findGamebyName(String name){
+    public Game findByName(String name){
         if(gameList.containsKey(name)){
             return gameList.get(name);
         }
@@ -32,22 +39,33 @@ public class GameRepository {
         }
     }
 
-    public Game findGamebyRate(int rate){
+    public List<Game> findByRate(double rate){
+        List<Game> games = new LinkedList<>();
         for(Game game : gameList.values()){
             if(game.getRate()==rate){
-                return game;
+                games.add(game);
             }
         }
-        throw new EntityNotFoundException();
+        if(games.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        else{
+            return games;
+        }
     }
 
-    public Game findGamebyDate(int year,int month,int dayOfMonth){
+    public List<Game> findByDate(LocalDate date){
+        List<Game> games = new LinkedList<>();
         for(Game game :gameList.values()){
-            if(game.getDate().equals(LocalDate.of(year,month,dayOfMonth))){
-                return game;
+            if(game.getDate().equals(date)){
+                games.add(game);
             }
         }
-        throw new EntityNotFoundException();
+        if(games.isEmpty()) {
+            throw new EntityNotFoundException();
+        }else{
+            return games;
+        }
     }
     public Game editGame(String oldName, String newName,String newType,String newComment, double newRate){
         if(gameList.containsKey(oldName)) {
@@ -61,8 +79,9 @@ public class GameRepository {
             throw new EntityNotFoundException();
         }
     }
-    public Map<String,Game> getGameList(){
-        return gameList;
+    public List<Game> getGameList(){
+        List list = new LinkedList(gameList.values());
+        return list;
     }
 
 
