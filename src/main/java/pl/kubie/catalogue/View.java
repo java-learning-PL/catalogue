@@ -1,7 +1,6 @@
 package pl.kubie.catalogue;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,68 +8,46 @@ public class View {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static Game addGame(){
+    public static String typeName(){
         scanner.nextLine();
         System.out.println("Type in name:");
-        String name = scanner.nextLine();
-        System.out.println("Type in type:");
+        String name =scanner.nextLine();
+        return name;
+    }
+    public static String typeType(){
+        scanner.nextLine();
+        System.out.println("Type in type");
         String type = scanner.nextLine();
-        System.out.println("Type in comment:");
-        String comment = scanner.nextLine();
-        System.out.println("Type in rate");
-        double rate = scanner.nextInt();
-        Game newGame = new Game(name, type, comment, rate);
-        return newGame;
+        return type;
     }
-    public static String deleteGame(){
+    public static String typeComment(){
         scanner.nextLine();
-        System.out.println("Type in name game to delete");
-        String name = scanner.nextLine();
-        return name;
+        System.out.println("Type in comment");
+        String comment  = scanner.nextLine();
+        return comment;
     }
-    public static List<String> editGame(){
-        List<String> values= new LinkedList<>();
-        scanner.nextLine();
-        System.out.println("Type in name Game to edit");
-        String oldName = scanner.nextLine();
-        System.out.println("Type in new name");
-        String newName = scanner.nextLine();
-        System.out.println("Type in new type");
-        String newType = scanner.nextLine();
-        System.out.println("Type in new comment");
-        String newComment = scanner.nextLine();
-        System.out.println("Type in rate");
-        String newRate = scanner.nextLine();
-        values.add(oldName);
-        values.add(newName);
-        values.add(newType);
-        values.add(newComment);
-        values.add(newRate);
-        return values;
-    }
-    public String findByName(){
-        scanner.nextLine();
-        System.out.println("Type in name");
-        String name = scanner.nextLine();
-        System.out.println();
-        return name;
-    }
-    public double findByRate(){
+    public static double typeRate(){
         scanner.nextLine();
         System.out.println("Type in rate");
         double rate = scanner.nextDouble();
         return rate;
     }
-    public LocalDate findByDate(){
+
+    public LocalDate typeDate() {
         scanner.nextLine();
         System.out.println("Type in year");
-        int year  = scanner.nextInt();
+        int year = scanner.nextInt();
         System.out.println("Type in month");
         int month = scanner.nextInt();
         System.out.println("Type in day");
         int day = scanner.nextInt();
-        LocalDate date = LocalDate.of(year,month,day);
+        LocalDate date = LocalDate.of(year, month, day);
         return date;
+    }
+    public static int typeChoice(){
+        System.out.println("Type in choice");
+        int choice = scanner.nextInt();
+        return choice;
     }
 
     public static void printMenu() {
@@ -88,7 +65,8 @@ public class View {
             System.out.println();
         }
     }
-    public static void printGame(Game game){
+
+    public static void printGame(Game game) {
         System.out.print(game.getName());
         System.out.print("||");
         System.out.print(game.getType());
@@ -99,6 +77,4 @@ public class View {
         System.out.print("||");
         System.out.print(game.getDate());
     }
-
-
 }
