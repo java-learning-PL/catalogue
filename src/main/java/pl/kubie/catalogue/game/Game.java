@@ -2,7 +2,7 @@ package pl.kubie.catalogue.game;
 
 import java.time.LocalDate;
 
-public class Game {
+class Game {
 
   private final String name;
   private final double rate;

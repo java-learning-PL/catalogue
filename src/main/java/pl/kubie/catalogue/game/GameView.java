@@ -2,7 +2,7 @@ package pl.kubie.catalogue.game;
 
 import java.util.List;
 
-public class GameView {
+class GameView {
 
   private static final String GAME_FORMAT = "%20s || %-15s || %5.2f || %-15s || %-15s%n";
 
