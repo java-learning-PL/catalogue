@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GameRepository {
+
     private Map<String,Game> gameList;
 
     public GameRepository() {
