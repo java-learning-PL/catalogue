@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GameView {
 
-  private static final String GAME_FORMAT = "%20s || %-15s || %05.2f || %-15s || %-15s%n";
+  private static final String GAME_FORMAT = "%20s || %-15s || %5.2f || %-15s || %-15s%n";
   private final Scanner scanner;
 
   GameView(Scanner scanner) {
