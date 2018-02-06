@@ -16,7 +16,7 @@ class UserInput {
     String type = readString("Enter type");
     String comment = readString("Enter comment");
     Double rate = readDouble("Enter rate");
-    return new Game(name, type, comment, rate);
+    return new Game(name, type, comment, rate, LocalDate.now());
   }
 
   public String gameId() {
@@ -24,11 +24,10 @@ class UserInput {
   }
 
   public Game update(Game that) {
-    String name = readString("Enter name", that.getName());
     String type = readString("Enter type", that.getType());
     String comment = readString("Enter comment", that.getComment());
     Double rate = readDouble("Enter rate", that.getRate());
-    return new Game(name, type, comment, rate);
+    return new Game(that.getName(),type,comment,rate,that.getDate());
   }
 
   public int menuChoice() {
@@ -63,7 +62,7 @@ class UserInput {
   private String readString(String message, String oldValue) {
     System.out.printf("%s (%s)%n", message, oldValue);
     String s = scanner.nextLine();
-    return s.isEmpty() ? message : s;
+    return s.isEmpty() ? oldValue : s;
   }
 
   private double readDouble(String message, double oldValue) {

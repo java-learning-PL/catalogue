@@ -5,29 +5,29 @@ import java.time.LocalDate;
 class Game {
 
   private final String name;
-  private final double rate;
   private final String type;
   private final String comment;
+  private final double rate;
   private final LocalDate date;
 
-  Game(String name, String type, String comment, double rate) {
+  Game(String name, String type, String comment, double rate, LocalDate date) {
     this.name = name;
     this.type = type;
-    this.rate = rate;
-    this.date = LocalDate.now();
     this.comment = comment;
+    this.rate = rate;
+    this.date = date;
   }
 
   public String getName() {
     return name;
   }
 
-  public String getComment() {
-    return comment;
-  }
-
   public String getType() {
     return type;
+  }
+
+  public String getComment() {
+    return comment;
   }
 
   public double getRate() {
@@ -37,5 +37,4 @@ class Game {
   public LocalDate getDate() {
     return date;
   }
-
 }
