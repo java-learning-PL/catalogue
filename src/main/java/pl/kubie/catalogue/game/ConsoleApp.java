@@ -6,13 +6,29 @@ import java.util.Scanner;
 
 public class ConsoleApp {
 
-  private static final GameView gameView = new GameView();
-  private static final UserInput userInput = new UserInput(new Scanner(System.in));
-  private static final GameRepository gameRepository = new GameRepository();
-  private static final GameController gameController = new GameController(gameRepository, gameView);
+  private final GameRepository gameRepository;
+  private final GameController gameController;
+  private final UserInput userInput;
 
+  public ConsoleApp(GameRepository gameRepository,
+      GameController gameController,
+      UserInput userInput) {
+    this.gameRepository = gameRepository;
+    this.gameController = gameController;
+    this.userInput = userInput;
+  }
 
   public static void main(String... args) {
+    GameRepository gameRepository = new GameRepository();
+    GameController gameController = new GameController(gameRepository, new GameView());
+    UserInput userInput = new UserInput(new Scanner(System.in));
+
+    ConsoleApp application = new ConsoleApp(gameRepository, gameController, userInput);
+
+    application.run();
+  }
+
+  private void run() {
     insertSampleData();
 
     while (true) {
@@ -58,7 +74,7 @@ public class ConsoleApp {
     }
   }
 
-  private static void insertSampleData() {
+  private void insertSampleData() {
     Arrays.asList(
         new Game("Wiedźmin", "Przygodowe", "Dobra gra", 10.0, LocalDate.now()),
         new Game("Assassin's Creed", "Przygodowe ", "Dobra gra", 9.4, LocalDate.now()),
