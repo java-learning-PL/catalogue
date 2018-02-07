@@ -18,6 +18,10 @@ class Game {
     this.date = date;
   }
 
+  Game(String name, String type, String comment, double rate) {
+    this(name, type, comment, rate, LocalDate.now());
+  }
+
   public String getName() {
     return name;
   }

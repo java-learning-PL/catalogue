@@ -1,6 +1,5 @@
 package pl.kubie.catalogue.game;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -76,11 +75,11 @@ public class ConsoleApp {
 
   private void insertSampleData() {
     Arrays.asList(
-        new Game("Wiedźmin", "Przygodowe", "Dobra gra", 10.0, LocalDate.now()),
-        new Game("Assassin's Creed", "Przygodowe ", "Dobra gra", 9.4, LocalDate.now()),
-        new Game("Gothic", "Przygodowe", "Dobra gra", 9.0, LocalDate.now()),
-        new Game("Need for speed", "Wyścigi", "Dobra gra", 8.0, LocalDate.now()),
-        new Game("GTA", "Przygodowe", "Dobra gra", 7.0, LocalDate.now())
+        new Game("Wiedźmin", "Przygodowe", "Dobra gra", 10.0),
+        new Game("Assassin's Creed", "Przygodowe ", "Dobra gra", 9.4),
+        new Game("Gothic", "Przygodowe", "Dobra gra", 9.0),
+        new Game("Need for speed", "Wyścigi", "Dobra gra", 8.0),
+        new Game("GTA", "Przygodowe", "Dobra gra", 7.0)
     )
         .forEach(gameRepository::save);
   }
