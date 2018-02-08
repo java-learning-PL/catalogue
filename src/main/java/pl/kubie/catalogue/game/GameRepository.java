@@ -29,7 +29,7 @@ class GameRepository {
   }
 
   public List<Game> findByDate(LocalDate date) {
-    List<Game> games = new LinkedList<>();
+    List<Game> games = new ArrayList<>();
     for (Game game : gameList.values()) {
       if (game.getDate().equals(date)) {
         games.add(game);
@@ -39,7 +39,7 @@ class GameRepository {
   }
 
   public List<Game> findByRate(double rate) {
-    List<Game> games = new LinkedList<>();
+    List<Game> games = new ArrayList<>();
     for (Game game : gameList.values()) {
       if (game.getRate() == rate) {
         games.add(game);
