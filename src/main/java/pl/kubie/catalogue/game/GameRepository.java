@@ -38,7 +38,7 @@ class GameRepository {
     return games;
   }
 
-  public List<Game> findByRate(double rate) {
+  public List<Game> findByRateGreaterThan(double rate) {
     List<Game> games = new ArrayList<>();
     for (Game game : gameList.values()) {
       if (game.getRate() == rate) {

@@ -31,7 +31,7 @@ class GameController {
 
   void findByRate(UserInput userInput) {
     double rate = userInput.rateToFind();
-    List<Game> games = gameRepository.findByRate(rate);
+    List<Game> games = gameRepository.findByRateGreaterThan(rate);
     gameView.print(games);
   }
 
