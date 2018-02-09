@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.stream.Collectors.toList;
 
 class GameRepository {
 
@@ -29,23 +30,17 @@ class GameRepository {
   }
 
   public List<Game> findByDate(LocalDate date) {
-    List<Game> games = new ArrayList<>();
-    for (Game game : gameList.values()) {
-      if (game.getDate().equals(date)) {
-        games.add(game);
-      }
-    }
-    return games;
+      return gameList.values()
+              .stream()
+              .filter(g -> g.getDate().equals(date))
+              .collect(toList());
   }
 
   public List<Game> findByRateGreaterThan(double rate) {
-    List<Game> games = new ArrayList<>();
-    for (Game game : gameList.values()) {
-      if (game.getRate() == rate) {
-        games.add(game);
-      }
-    }
-    return games;
+    return gameList.values()
+            .stream()
+            .filter(g -> g.getRate() < rate)
+            .collect(toList());
   }
 
   public Game save(Game game) {
